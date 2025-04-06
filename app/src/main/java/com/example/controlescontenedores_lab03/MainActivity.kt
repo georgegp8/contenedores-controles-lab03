@@ -83,7 +83,8 @@ class MainActivity : ComponentActivity() {
                         //TopAppBarDemo()
                         //BottomNavigationDemo()
                         //DialogDemo()
-                        DividerDemo()
+                        //DividerDemo()
+                        DropDownMenuDemo()
                     }
                 }
 
@@ -704,8 +705,53 @@ fun DividerDemo() {
     }
 }
 
+@Composable
+fun DropDownMenuDemo() {
+    var expanded by remember { mutableStateOf(false) }
+    var selectedOption by remember { mutableStateOf("Selecciona una opción") }
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+    ) {
+        Text(text = selectedOption, fontSize = 18.sp)
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Button(onClick = { expanded = true }) {
+            Text("Abrir menú")
+        }
+
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false }
+        ) {
+            DropdownMenuItem(
+                text = { Text("Opción 1") },
+                onClick = {
+                    selectedOption = "Opción 1"
+                    expanded = false
+                }
+            )
+            DropdownMenuItem(
+                text = { Text("Opción 2") },
+                onClick = {
+                    selectedOption = "Opción 2"
+                    expanded = false
+                }
+            )
+        }
+    }
+}
 
 
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewDropDownMenuDemo() {
+    DropDownMenuDemo()
+}
 
 @Preview(showBackground = true)
 @Composable
