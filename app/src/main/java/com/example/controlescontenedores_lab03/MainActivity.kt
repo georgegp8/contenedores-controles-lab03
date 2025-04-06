@@ -28,6 +28,7 @@ import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -54,7 +55,8 @@ class MainActivity : ComponentActivity() {
                         //LazyRowDemo()
                         //GridDemo()
                         //ConstraintLayoutDemo()
-                        ScaffoldDemo()
+                        //ScaffoldDemo()
+                        SurfaceDemo()
 
                     }
                 }
@@ -216,6 +218,34 @@ fun ScaffoldDemo() {
             }
         }
     }
+}
+
+@Composable
+fun SurfaceDemo() {
+    Surface(
+        color = Color(0xFFD1C4E9), // Fondo lavanda suave
+        shadowElevation = 8.dp,
+        shape = MaterialTheme.shapes.medium,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+    ) {
+        Column(
+            modifier = Modifier
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text("Componente Surface", style = MaterialTheme.typography.titleMedium)
+            Spacer(modifier = Modifier.height(8.dp))
+            Text("Sirve como fondo con sombra y color.")
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewSurfaceDemo() {
+    SurfaceDemo()
 }
 
 @Preview(showBackground = true)
