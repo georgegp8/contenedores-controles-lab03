@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -29,6 +30,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -45,6 +47,7 @@ import androidx.compose.ui.unit.dp
 import com.example.controlescontenedores_lab03.ui.theme.ControlesContenedoreslab03Theme
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.google.accompanist.flowlayout.FlowRow
+import com.google.accompanist.flowlayout.FlowColumn
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,7 +65,8 @@ class MainActivity : ComponentActivity() {
                         //SurfaceDemo()
                         //ChipDemo()
                         //BackdropScaffold es obsoleto
-                        FlowRowDemo()
+                        //FlowRowDemo()
+                        FlowColumnDemo()
                     }
                 }
 
@@ -284,7 +288,31 @@ fun FlowRowDemo() {
     }
 }
 
+@Composable
+fun FlowColumnDemo() {
+    FlowColumn(
+        modifier = Modifier
+            .wrapContentHeight()
+            .padding(16.dp),
+        mainAxisSpacing = 8.dp,
+        crossAxisSpacing = 8.dp
+    ) {
+        repeat(4) { index ->
+            OutlinedButton(
+                onClick = { },
+                modifier = Modifier.height(50.dp)
+            ) {
+                Text("Elemento $index")
+            }
+        }
+    }
+}
 
+@Preview(showBackground = true)
+@Composable
+fun PreviewFlowColumnDemo() {
+    FlowColumnDemo()
+}
 
 @Preview(showBackground = true)
 @Composable
