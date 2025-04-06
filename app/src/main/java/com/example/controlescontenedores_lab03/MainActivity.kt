@@ -89,7 +89,8 @@ class MainActivity : ComponentActivity() {
                         //DropDownMenuDemo()
                         //NavigationRailDemo()
                         //OutlinedTextFieldDemo()
-                        SnackbarDemo()
+                        //SnackbarDemo()
+                        TabRowDemo()
                     }
                 }
 
@@ -832,12 +833,46 @@ fun SnackbarDemo() {
     }
 }
 
+@Composable
+fun TabRowDemo() {
+    var selectedTabIndex by remember { mutableStateOf(0) }
+    val tabs = listOf("Inicio", "Perfil", "Ajustes")
+
+    Column(modifier = Modifier.fillMaxWidth()) {
+        TabRow(selectedTabIndex = selectedTabIndex) {
+            tabs.forEachIndexed { index, title ->
+                Tab(
+                    selected = selectedTabIndex == index,
+                    onClick = { selectedTabIndex = index },
+                    text = { Text(title) }
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(150.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(text = "Contenido: ${tabs[selectedTabIndex]}", fontSize = 18.sp)
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewTabRowDemo() {
+    TabRowDemo()
+}
+
 @Preview(showBackground = true)
 @Composable
 fun PreviewSnackbarDemo() {
     SnackbarDemo()
 }
-
 
 @Preview(showBackground = true)
 @Composable
