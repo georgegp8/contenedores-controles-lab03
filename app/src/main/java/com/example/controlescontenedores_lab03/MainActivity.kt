@@ -39,6 +39,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -50,6 +51,7 @@ import com.example.controlescontenedores_lab03.ui.theme.ControlesContenedoreslab
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.flowlayout.FlowColumn
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,7 +88,8 @@ class MainActivity : ComponentActivity() {
                         //DividerDemo()
                         //DropDownMenuDemo()
                         //NavigationRailDemo()
-                        OutlinedTextFieldDemo()
+                        //OutlinedTextFieldDemo()
+                        SnackbarDemo()
                     }
                 }
 
@@ -803,6 +806,37 @@ fun OutlinedTextFieldDemo() {
     }
 }
 
+@Composable
+fun SnackbarDemo() {
+    val snackbarHostState = remember { SnackbarHostState() }
+    val scope = rememberCoroutineScope()
+
+    Scaffold(
+        snackbarHost = { SnackbarHost(snackbarHostState) }
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .padding(innerPadding)
+                .padding(16.dp)
+                .fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Button(onClick = {
+                scope.launch {
+                    snackbarHostState.showSnackbar("¡Hola! Este es un Snackbar.")
+                }
+            }) {
+                Text("Mostrar Snackbar")
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewSnackbarDemo() {
+    SnackbarDemo()
+}
 
 
 @Preview(showBackground = true)
