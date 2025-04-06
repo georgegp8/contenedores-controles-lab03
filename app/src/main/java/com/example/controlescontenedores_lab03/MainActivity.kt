@@ -84,7 +84,8 @@ class MainActivity : ComponentActivity() {
                         //BottomNavigationDemo()
                         //DialogDemo()
                         //DividerDemo()
-                        DropDownMenuDemo()
+                        //DropDownMenuDemo()
+                        NavigationRailDemo()
                     }
                 }
 
@@ -745,7 +746,41 @@ fun DropDownMenuDemo() {
     }
 }
 
+@Composable
+fun NavigationRailDemo() {
+    var selectedItem by remember { mutableStateOf(0) }
+    val items = listOf("Inicio", "Buscar", "Perfil")
+    val icons = listOf(Icons.Default.Home, Icons.Default.Search, Icons.Default.Person)
 
+    Row(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        NavigationRail {
+            items.forEachIndexed { index, label ->
+                NavigationRailItem(
+                    selected = selectedItem == index,
+                    onClick = { selectedItem = index },
+                    icon = { Icon(icons[index], contentDescription = label) }
+                )
+            }
+        }
+
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Text("Sección: ${items[selectedItem]}", fontSize = 18.sp)
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewNavigationRailDemo() {
+    NavigationRailDemo()
+}
 
 @Preview(showBackground = true)
 @Composable
