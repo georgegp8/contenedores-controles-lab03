@@ -40,6 +40,9 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -82,7 +85,9 @@ class MainActivity : ComponentActivity() {
                         //CheckboxDemo()
                         //FloatingButtonExample(onClick = { /* Acción */ })
                         //IconDemo()
-                        ImageDemo()
+                        //ImageDemo()
+                        //ProgressBarDemo()
+                        RadioButtonDemo()
                     }
                 }
 
@@ -460,6 +465,71 @@ fun ImageDemo() {
             modifier = Modifier.size(100.dp)
         )
     }
+}
+
+@Composable
+fun ProgressBarDemo() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text("Cargando (Linear)", fontSize = 18.sp)
+        Spacer(modifier = Modifier.height(8.dp))
+        LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        Text("Cargando (Circular)", fontSize = 18.sp)
+        Spacer(modifier = Modifier.height(8.dp))
+        CircularProgressIndicator()
+    }
+}
+
+@Composable
+fun RadioButtonDemo() {
+    var selectedOption by remember { mutableStateOf("Opción 1") }
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+    ) {
+        Text("Seleccione una opción:", fontSize = 18.sp)
+
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            RadioButton(
+                selected = selectedOption == "Opción 1",
+                onClick = { selectedOption = "Opción 1" }
+            )
+            Text("Opción 1")
+        }
+
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            RadioButton(
+                selected = selectedOption == "Opción 2",
+                onClick = { selectedOption = "Opción 2" }
+            )
+            Text("Opción 2")
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+        Text("Seleccionado: $selectedOption", fontSize = 16.sp)
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewRadioButtonDemo() {
+    RadioButtonDemo()
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewProgressBarDemo() {
+    ProgressBarDemo()
 }
 
 @Preview(showBackground = true)
