@@ -82,7 +82,8 @@ class MainActivity : ComponentActivity() {
                         //SwitchDemo()
                         //TopAppBarDemo()
                         //BottomNavigationDemo()
-                        DialogDemo()
+                        //DialogDemo()
+                        DividerDemo()
                     }
                 }
 
@@ -681,12 +682,42 @@ fun DialogDemo() {
     }
 }
 
+@Composable
+fun DividerDemo() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+    ) {
+        Text("Elemento superior", fontSize = 18.sp)
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Divider(
+            color = Color.Gray,
+            thickness = 2.dp
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Text("Elemento inferior", fontSize = 18.sp)
+    }
+}
+
+
+
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewDividerDemo() {
+    DividerDemo()
+}
+
 @Preview(showBackground = true)
 @Composable
 fun PreviewDialogDemo() {
     DialogDemo()
 }
-
 
 @Preview(showBackground = true)
 @Composable
