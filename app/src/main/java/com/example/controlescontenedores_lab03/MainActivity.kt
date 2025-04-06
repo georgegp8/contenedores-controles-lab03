@@ -24,10 +24,13 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.*
 import androidx.compose.ui.unit.sp
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.*
@@ -75,7 +78,8 @@ class MainActivity : ComponentActivity() {
                         //SliderDemo()
                         //SpacerDemo()
                         //SwitchDemo()
-                        TopAppBarDemo()
+                        //TopAppBarDemo()
+                        BottomNavigationDemo()
                     }
                 }
 
@@ -595,6 +599,49 @@ fun TopAppBarDemo() {
             Text("Contenido debajo de la AppBar")
         }
     }
+}
+
+@Composable
+fun BottomNavigationDemo() {
+    var selectedItem by remember { mutableStateOf(0) }
+    val items = listOf("Inicio", "Buscar", "Perfil")
+    val icons = listOf(Icons.Default.Home, Icons.Default.Search, Icons.Default.Person)
+
+    Scaffold(
+        bottomBar = {
+            NavigationBar {
+                items.forEachIndexed { index, item ->
+                    NavigationBarItem(
+                        icon = { Icon(icons[index], contentDescription = item) },
+                        label = { Text(item) },
+                        selected = selectedItem == index,
+                        onClick = { selectedItem = index },
+                        colors = NavigationBarItemDefaults.colors(
+                            selectedIconColor = Color.Blue,
+                            selectedTextColor = Color.Blue
+                        )
+                    )
+                }
+            }
+        }
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxWidth()
+                .height(200.dp)
+                .padding(top = 24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text("Pantalla: ${items[selectedItem]}", fontSize = 18.sp)
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewBottomNavigationDemo() {
+    BottomNavigationDemo()
 }
 
 @Preview(showBackground = true)
