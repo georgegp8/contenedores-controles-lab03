@@ -47,6 +47,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.Slider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -87,7 +88,8 @@ class MainActivity : ComponentActivity() {
                         //IconDemo()
                         //ImageDemo()
                         //ProgressBarDemo()
-                        RadioButtonDemo()
+                        //RadioButtonDemo()
+                        SliderDemo()
                     }
                 }
 
@@ -519,12 +521,40 @@ fun RadioButtonDemo() {
     }
 }
 
+@Composable
+fun SliderDemo() {
+    var sliderValue by remember { mutableStateOf(0f) }
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+    ) {
+        Text("Ajustar valor:", fontSize = 18.sp)
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Slider(
+            value = sliderValue,
+            onValueChange = { sliderValue = it },
+            valueRange = 0f..100f
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+        Text("Valor actual: ${sliderValue.toInt()}")
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewSliderDemo() {
+    SliderDemo()
+}
+
 @Preview(showBackground = true)
 @Composable
 fun PreviewRadioButtonDemo() {
     RadioButtonDemo()
 }
-
 
 @Preview(showBackground = true)
 @Composable
