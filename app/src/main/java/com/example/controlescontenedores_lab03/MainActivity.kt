@@ -9,6 +9,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -44,6 +45,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
 import com.example.controlescontenedores_lab03.ui.theme.ControlesContenedoreslab03Theme
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.google.accompanist.flowlayout.FlowRow
@@ -79,7 +81,8 @@ class MainActivity : ComponentActivity() {
                         //SpacerDemo()
                         //SwitchDemo()
                         //TopAppBarDemo()
-                        BottomNavigationDemo()
+                        //BottomNavigationDemo()
+                        DialogDemo()
                     }
                 }
 
@@ -637,6 +640,53 @@ fun BottomNavigationDemo() {
         }
     }
 }
+
+@Composable
+fun DialogDemo() {
+    var showDialog by remember { mutableStateOf(false) }
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Button(onClick = { showDialog = true }) {
+            Text("Mostrar Dialog personalizado")
+        }
+
+        if (showDialog) {
+            Dialog(onDismissRequest = { showDialog = false }) {
+                Surface(
+                    shape = MaterialTheme.shapes.medium,
+                    color = Color.White,
+                    tonalElevation = 8.dp,
+                    modifier = Modifier.padding(16.dp)
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .padding(24.dp)
+                            .width(IntrinsicSize.Min),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Text("Este es un diálogo personalizado", fontSize = 18.sp)
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Button(onClick = { showDialog = false }) {
+                            Text("Cerrar")
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewDialogDemo() {
+    DialogDemo()
+}
+
 
 @Preview(showBackground = true)
 @Composable
