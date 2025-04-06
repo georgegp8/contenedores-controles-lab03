@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -12,6 +13,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Scaffold
@@ -32,8 +36,9 @@ class MainActivity : ComponentActivity() {
             ControlesContenedoreslab03Theme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Box(modifier = Modifier.padding(innerPadding)) {
-                        LazyColumnDemo()
-                        LazyRowDemo()
+                        //LazyColumnDemo()
+                        //LazyRowDemo()
+                        GridDemo()
                     }
                 }
 
@@ -87,13 +92,50 @@ fun LazyRowDemo() {
     }
 }
 
+@Composable
+fun GridDemo() {
+    val elementos = (1..10).map { "Elemento $it" }
+
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(2),
+        modifier = Modifier
+            .height(300.dp)
+            .fillMaxWidth()
+            .padding(8.dp),
+        contentPadding = PaddingValues(8.dp)
+    ) {
+        items(elementos) { item ->
+            Card(
+                modifier = Modifier
+                    .padding(8.dp)
+                    .fillMaxWidth(),
+                colors = CardDefaults.cardColors(containerColor = Color(0xFFC8E6C9))
+            ) {
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier
+                        .height(80.dp)
+                        .fillMaxWidth()
+                ) {
+                    Text(item)
+                }
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewGridDemo() {
+    GridDemo()
+}
+
+
 @Preview(showBackground = true)
 @Composable
 fun PreviewLazyRowDemo() {
     LazyRowDemo()
 }
-
-
 
 @Preview(showBackground = true)
 @Composable
