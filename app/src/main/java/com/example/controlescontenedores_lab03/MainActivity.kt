@@ -29,6 +29,7 @@ import androidx.compose.material.icons.*
 import androidx.compose.ui.unit.sp
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
@@ -47,6 +48,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.Popup
 import com.example.controlescontenedores_lab03.ui.theme.ControlesContenedoreslab03Theme
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.google.accompanist.flowlayout.FlowRow
@@ -90,7 +92,8 @@ class MainActivity : ComponentActivity() {
                         //NavigationRailDemo()
                         //OutlinedTextFieldDemo()
                         //SnackbarDemo()
-                        TabRowDemo()
+                        //TabRowDemo()
+                        TooltipDemo()
                     }
                 }
 
@@ -860,6 +863,45 @@ fun TabRowDemo() {
             Text(text = "Contenido: ${tabs[selectedTabIndex]}", fontSize = 18.sp)
         }
     }
+}
+
+@Composable
+fun TooltipDemo() {
+    var showTooltip by remember { mutableStateOf(false) }
+
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(32.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        IconButton(onClick = { showTooltip = !showTooltip }) {
+            Icon(Icons.Default.Info, contentDescription = "Info")
+        }
+
+        if (showTooltip) {
+            Popup(alignment = Alignment.TopCenter, onDismissRequest = { showTooltip = false }) {
+                Surface(
+                    shape = MaterialTheme.shapes.small,
+                    color = Color(0xFF323232),
+                    tonalElevation = 4.dp
+                ) {
+                    Text(
+                        text = "Este es un tooltip",
+                        color = Color.White,
+                        modifier = Modifier
+                            .padding(horizontal = 12.dp, vertical = 8.dp)
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewTooltipDemo() {
+    TooltipDemo()
 }
 
 @Preview(showBackground = true)
