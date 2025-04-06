@@ -89,7 +89,8 @@ class MainActivity : ComponentActivity() {
                         //ImageDemo()
                         //ProgressBarDemo()
                         //RadioButtonDemo()
-                        SliderDemo()
+                        //SliderDemo()
+                        SpacerDemo()
                     }
                 }
 
@@ -543,6 +544,29 @@ fun SliderDemo() {
         Text("Valor actual: ${sliderValue.toInt()}")
     }
 }
+
+@Composable
+fun SpacerDemo() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text("Texto superior", fontSize = 18.sp)
+
+        Spacer(modifier = Modifier.height(32.dp)) // Espacio vertical
+
+        Text("Texto inferior", fontSize = 18.sp)
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewSpacerDemo() {
+    SpacerDemo()
+}
+
 
 @Preview(showBackground = true)
 @Composable
