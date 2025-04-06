@@ -423,8 +423,6 @@ fun PreviewFloatingButtonExample() {
     }
 }
 
-
-
 @Preview(showBackground = true)
 @Composable
 fun PreviewCheckboxDemo() {
