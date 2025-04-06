@@ -41,6 +41,8 @@ android {
 
 dependencies {
     implementation("androidx.constraintlayout:constraintlayout-compose:1.1.1")
+    implementation("com.google.accompanist:accompanist-navigation-material:0.32.0")
+    implementation("com.google.accompanist:accompanist-flowlayout:0.32.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

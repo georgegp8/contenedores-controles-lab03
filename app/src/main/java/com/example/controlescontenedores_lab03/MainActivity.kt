@@ -44,6 +44,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.controlescontenedores_lab03.ui.theme.ControlesContenedoreslab03Theme
 import androidx.constraintlayout.compose.ConstraintLayout
+import com.google.accompanist.flowlayout.FlowRow
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,8 +60,9 @@ class MainActivity : ComponentActivity() {
                         //ConstraintLayoutDemo()
                         //ScaffoldDemo()
                         //SurfaceDemo()
-                        ChipDemo()
-
+                        //ChipDemo()
+                        //BackdropScaffold es obsoleto
+                        FlowRowDemo()
                     }
                 }
 
@@ -260,6 +262,34 @@ fun ChipDemo() {
         },
         modifier = Modifier.padding(16.dp)
     )
+}
+
+@Composable
+fun FlowRowDemo() {
+    FlowRow(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+        mainAxisSpacing = 8.dp,
+        crossAxisSpacing = 8.dp
+    ) {
+        repeat(12) { index ->
+            Button(
+                onClick = { },
+                modifier = Modifier.width(100.dp)
+            ) {
+                Text("Btn $index")
+            }
+        }
+    }
+}
+
+
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewFlowRowDemo() {
+    FlowRowDemo()
 }
 
 @Preview(showBackground = true)
