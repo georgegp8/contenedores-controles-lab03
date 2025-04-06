@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,6 +29,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -71,7 +73,8 @@ class MainActivity : ComponentActivity() {
                         //FlowRowDemo()
                         //FlowColumnDemo()
                         //AlertDialogDemo()
-                        CardDemo()
+                        //CardDemo()
+                        CheckboxDemo()
                     }
                 }
 
@@ -368,6 +371,33 @@ fun CardDemo() {
             }
         }
     }
+}
+
+@Composable
+fun CheckboxDemo() {
+    var isChecked by remember { mutableStateOf(false) }
+
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+    ) {
+        Checkbox(
+            checked = isChecked,
+            onCheckedChange = { isChecked = it }
+        )
+        Spacer(modifier = Modifier.width(8.dp))
+        Text(text = if (isChecked) "Seleccionado" else "No seleccionado")
+    }
+}
+
+
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewCheckboxDemo() {
+    CheckboxDemo()
 }
 
 
