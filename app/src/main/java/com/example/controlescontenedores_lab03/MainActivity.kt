@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -80,7 +81,8 @@ class MainActivity : ComponentActivity() {
                         //CardDemo()
                         //CheckboxDemo()
                         //FloatingButtonExample(onClick = { /* Acción */ })
-                        IconDemo()
+                        //IconDemo()
+                        ImageDemo()
                     }
                 }
 
@@ -440,6 +442,30 @@ fun IconDemo() {
         Spacer(modifier = Modifier.width(8.dp))
         Text("Ícono de estrella", fontSize = 18.sp)
     }
+}
+
+@Composable
+fun ImageDemo() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text("Imagen de ejemplo", fontSize = 18.sp)
+        Spacer(modifier = Modifier.height(16.dp))
+        Image(
+            painter = painterResource(id = R.drawable.ic_launcher_foreground),
+            contentDescription = "Imagen predeterminada",
+            modifier = Modifier.size(100.dp)
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewImageDemo() {
+    ImageDemo()
 }
 
 @Preview(showBackground = true)
