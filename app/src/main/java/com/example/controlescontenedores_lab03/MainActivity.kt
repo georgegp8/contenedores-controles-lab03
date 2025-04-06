@@ -48,6 +48,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.Slider
+import androidx.compose.material3.Switch
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -90,7 +91,8 @@ class MainActivity : ComponentActivity() {
                         //ProgressBarDemo()
                         //RadioButtonDemo()
                         //SliderDemo()
-                        SpacerDemo()
+                        //SpacerDemo()
+                        SwitchDemo()
                     }
                 }
 
@@ -561,12 +563,38 @@ fun SpacerDemo() {
     }
 }
 
+@Composable
+fun SwitchDemo() {
+    var isSwitchOn by remember { mutableStateOf(false) }
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Switch(
+            checked = isSwitchOn,
+            onCheckedChange = { isSwitchOn = it }
+        )
+        Spacer(modifier = Modifier.width(8.dp))
+        Text(if (isSwitchOn) "Encendido" else "Apagado", fontSize = 18.sp)
+    }
+}
+
+
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewSwitchDemo() {
+    SwitchDemo()
+}
+
 @Preview(showBackground = true)
 @Composable
 fun PreviewSpacerDemo() {
     SpacerDemo()
 }
-
 
 @Preview(showBackground = true)
 @Composable
