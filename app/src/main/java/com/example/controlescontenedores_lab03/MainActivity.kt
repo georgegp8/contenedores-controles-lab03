@@ -85,7 +85,8 @@ class MainActivity : ComponentActivity() {
                         //DialogDemo()
                         //DividerDemo()
                         //DropDownMenuDemo()
-                        NavigationRailDemo()
+                        //NavigationRailDemo()
+                        OutlinedTextFieldDemo()
                     }
                 }
 
@@ -774,6 +775,40 @@ fun NavigationRailDemo() {
             Text("Sección: ${items[selectedItem]}", fontSize = 18.sp)
         }
     }
+}
+
+@Composable
+fun OutlinedTextFieldDemo() {
+    var text by remember { mutableStateOf("") }
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+    ) {
+        Text("Ingresa tu nombre:", fontSize = 18.sp)
+        Spacer(modifier = Modifier.height(8.dp))
+
+        OutlinedTextField(
+            value = text,
+            onValueChange = { text = it },
+            label = { Text("Nombre") },
+            placeholder = { Text("Escribe aquí...") },
+            singleLine = true,
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+        Text("Texto ingresado: $text")
+    }
+}
+
+
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewOutlinedTextFieldDemo() {
+    OutlinedTextFieldDemo()
 }
 
 @Preview(showBackground = true)
