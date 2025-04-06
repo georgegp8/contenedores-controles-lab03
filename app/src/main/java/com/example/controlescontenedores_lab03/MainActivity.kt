@@ -70,7 +70,8 @@ class MainActivity : ComponentActivity() {
                         //BackdropScaffold es obsoleto
                         //FlowRowDemo()
                         //FlowColumnDemo()
-                        AlertDialogDemo()
+                        //AlertDialogDemo()
+                        CardDemo()
                     }
                 }
 
@@ -346,6 +347,37 @@ fun AlertDialogDemo() {
         }
     }
 }
+
+@Composable
+fun CardDemo() {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
+        shape = MaterialTheme.shapes.medium,
+        colors = CardDefaults.cardColors(containerColor = Color(0xFFE3F2FD)) // Azul claro
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text("Título de la Card", style = MaterialTheme.typography.titleMedium)
+            Spacer(modifier = Modifier.height(8.dp))
+            Text("Esta es una tarjeta que contiene texto y se puede estilizar fácilmente.")
+            Spacer(modifier = Modifier.height(8.dp))
+            Button(onClick = {}) {
+                Text("Acción")
+            }
+        }
+    }
+}
+
+
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewCardDemo() {
+    CardDemo()
+}
+
 
 @Preview(showBackground = true)
 @Composable
